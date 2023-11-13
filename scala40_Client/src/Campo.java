@@ -7,10 +7,11 @@ import java.io.IOException;
 
 public class Campo extends JFrame{
 
-    private BufferedImage backgroundImage;
-    private ClientTCP clientTCP=new ClientTCP();
-    private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\";
+    private BufferedImage backgroundImage;      //immagine sfondo
+    private ClientTCP clientTCP=new ClientTCP();    /* oggetto per comunicare col server */
+    private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\"; /* root dove sono salvate le immagini */
 
+    /* costruttore che crea la finestra */
     public Campo(String players) throws IOException {
 
         inviaConnessione();
@@ -45,12 +46,14 @@ public class Campo extends JFrame{
         // Crea e aggiungi componenti GUI (es. carte, bottoni, ecc.) al pannello del gioco..
 
         
-
+        //aggiunge gli elementi al pannello
         add(overlayPanel);
 
+        //rende visibile il pannello
         setVisible(true);
     }
 
+    //invia un messaggio al server
     public void inviaConnessione() throws IOException{
         Messaggio m = new Messaggio("accept");
         this.clientTCP.send(m.mess);
