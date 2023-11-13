@@ -13,6 +13,7 @@ public class Campo extends JFrame{
 
     public Campo(String players) throws IOException {
 
+        inviaConnessione();
         //titolo della finestra
         setTitle("Scala 40");
 
@@ -50,5 +51,8 @@ public class Campo extends JFrame{
         setVisible(true);
     }
 
-    
+    public void inviaConnessione() throws IOException{
+        Messaggio m = new Messaggio("accept");
+        this.clientTCP.send(m.mess);
+    }
 }

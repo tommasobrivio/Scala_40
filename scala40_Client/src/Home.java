@@ -78,11 +78,11 @@ public class Home extends JFrame{
         // funzione che verifica quando viene premuto il pulsante
         playButton.addActionListener(e -> {
             String inputText = inputField.getText();
-            if(inputText==""){
+            if(inputText.equals("")){
                 JLabel tmp= new JLabel("You must input something in the textbox!!");
                 tmp.setForeground(Color.white);
                 tmp.setFont(new Font("Arial", Font.PLAIN, 14));
-                tmp.setBounds(20,(int) (screenHeight * 0.3), 600, 30);
+                tmp.setBounds(20,(int) (screenHeight * 0.5), 600, 30);
                 overlayPanel.add(tmp);
                 inputField.setText("");
             }

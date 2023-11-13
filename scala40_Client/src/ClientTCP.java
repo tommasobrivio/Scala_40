@@ -1,35 +1,39 @@
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
 public class ClientTCP {
     public Socket socket;
-    public DataInputStream is;
-    public DataOutputStream os;
+    public ObjectOutputStream oOutput;
+    public ObjectInputStream oInput;
 
-    
+
     public ClientTCP() throws UnknownHostException, IOException{
 
         //creazione socket comunicazione
-        socket=new Socket(/*IP*/"", /*porta*/0);
+        socket=new Socket(/*IP*/"127.0.0.1", /*porta*/666);
 
-        is=new DataInputStream(socket.getInputStream());
-
-        os=new DataOutputStream(socket.getOutputStream());
+        oInput=new ObjectInputStream(socket.getInputStream());
+        
+        oOutput=new ObjectOutputStream(socket.getOutputStream());
+        
+        
     }
 
     public void send(Object object) throws IOException{
 
         //invia messaggio al server
-        os.writeUTF((String) object);
+        oOutput.writeObject(object);
     }
 
-    public Object receive() throws IOException{
+    public Object receive() throws IOException, ClassNotFoundException{
 
         //legge e ritorna messaggio dal server
-        return is.readUTF();
+        return oInput.readObject();
     }
 
 
