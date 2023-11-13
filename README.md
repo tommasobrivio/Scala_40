@@ -1,1 +1,1 @@
-# REPOSITORY scala_40
+# REPOSITORY scala_40 Rega&Brivio
