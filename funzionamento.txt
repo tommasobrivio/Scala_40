@@ -1,0 +1,28 @@
+FUNZIONAMENTO GENERALE: 
+-pagina Home client inserisce nome -> se è vuoto mostra errore, altrimenti passa alla pagina Campo
+
+-pagina Campo invia richiesta TCP di giocare al server  ->  se tutti i giocatori, almeno 2 massimo 4, sono pronti si gioca
+
+-server invia ai client le 13 carte da tenere "in mano" ai giocatori e il client le visualizza
+
+
+OBIETTIVO: 
+-arrivare a non avere carte in mano, giocandole sul campo
+
+REGOLE:
+
+-all' inizio di ogni turno, il giocatore deve o pescare una carta dal mazzo o può prendere la prima carta della pila degli scarti.
+    Però se non ha carte sul proprio campo, può prendere la carta dalla pila degli scarti solo se è in grado di poter giocare almeno 40
+    punti sul campo. Se invece ha 40 punti sul campo può prendere la carta senza giocare nulla.
+
+-mentre un giocatore non ha carte in mano, per iniziare a giocare deve selezionare un certo numero di carte la cui somma deve essere 
+    almeno 40. Criteri per giocare carte:
+        -si devono formare gruppi da almeno 3 carte, possono essere scale ordinate (carte dello stesso seme ma di numero diverso) o carte
+           dello stesso valore ma di seme diverso
+        
+        -i giocatori con almeno 40 punti giocati possono attaccare delle loro carte della mano ad altre combinazioni giocate dagli 
+           avversari, purchè rispettino gli stessi criteri elencati prima per giocare le carte iniziali
+
+-alla fine di ogni turno il giocatore deve scartare una carta dalla sua mano che non può essere attaccata a nessuna combinazione presente
+    sul campo.
+            

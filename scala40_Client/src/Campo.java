@@ -8,6 +8,7 @@ import java.io.IOException;
 public class Campo extends JFrame{
 
     private BufferedImage backgroundImage;
+    private ClientTCP clientTCP=new ClientTCP();
     private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\";
 
     public Campo(String players) throws IOException {
@@ -48,4 +49,6 @@ public class Campo extends JFrame{
 
         setVisible(true);
     }
+
+    
 }
