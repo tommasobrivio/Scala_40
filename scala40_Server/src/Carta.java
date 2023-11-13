@@ -6,20 +6,22 @@ import java.io.IOException;
  */
 public class Carta {
 
-    public char cover;
-    public char rank;
-    public char type;
-    public int value;
+    public char cover;  /* cover della carta (o rossa o blu) */
+    public char rank;   /* valore scritto sulla carta */
+    public char type;   /* seme della carta */
+    public int value;   /* valore effettivo della carta */
 
+    /* costruttore */
     public Carta(){
 
     }
     
-
+    /* metodo che controlla se è un intero (se non lo è sarà o un asso o una figura) */
     public boolean isInt(Object o){
         return o instanceof Integer;
     }
 
+    /* in base alla carta gli associa il loro valore */
     public void associaValore(){
         if(isInt(this.rank)){
             this.value=this.rank-'0';
