@@ -7,7 +7,7 @@ public class Combinazione {
     public List<Carta> combinazione;
 
     //tris se hanno stesso rank, scala se hanno stesso seme
-    private String tipo;
+    public String tipo;
 
     /* costruttore */
     public Combinazione(){
@@ -17,7 +17,7 @@ public class Combinazione {
 
     /* aggiunge carta a una combinazione */
     public void pushCarta(Carta c){
-        if
+        
     }
 
     /* setta il tipo della combinazione */
