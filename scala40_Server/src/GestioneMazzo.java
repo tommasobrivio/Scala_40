@@ -25,6 +25,7 @@ public class GestioneMazzo {
             Carta carta = new Carta();
             while (carta.loadFromFileCSV(reader)) { // mentre la linea esiste e non è una linea vuota
                 mazzo.add(carta);
+                carta.associaValore();
                 carta = new Carta();
             }
         }

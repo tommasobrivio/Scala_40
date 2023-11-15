@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Combinazione {
     
@@ -15,11 +17,6 @@ public class Combinazione {
         tipo="";
     }
 
-    /* aggiunge carta a una combinazione */
-    public void pushCarta(Carta c){
-        
-    }
-
     /* setta il tipo della combinazione */
     public void setTipo(String s){
         tipo=s;
@@ -31,5 +28,17 @@ public class Combinazione {
             return true;
         }
         return false;
+    }
+
+    /* ordina una scala in ordine crescente */
+    public boolean ordinaScala(){
+
+        try{
+            Collections.sort(combinazione, Comparator.comparingInt(Carta::getValue));
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -10,10 +10,11 @@ public class Campo extends JFrame{
     private BufferedImage backgroundImage;      //immagine sfondo
     private ClientTCP clientTCP=new ClientTCP();    /* oggetto per comunicare col server */
     private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\"; /* root dove sono salvate le immagini */
-
+    private PlayerClient player;
     /* costruttore che crea la finestra */
-    public Campo(String players) throws IOException {
+    public Campo(String playerName) throws IOException {
 
+        player=new PlayerClient(playerName);
         inviaConnessione();
         //titolo della finestra
         setTitle("Scala 40");
@@ -55,7 +56,7 @@ public class Campo extends JFrame{
 
     //invia un messaggio al server
     public void inviaConnessione() throws IOException{
-        Messaggio m = new Messaggio("accept");
+        Messaggio m = new Messaggio(player.nome);
         this.clientTCP.send(m.mess);
     }
 }
