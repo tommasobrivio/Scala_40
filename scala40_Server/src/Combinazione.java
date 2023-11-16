@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Combinazione {
     
@@ -7,17 +9,12 @@ public class Combinazione {
     public List<Carta> combinazione;
 
     //tris se hanno stesso rank, scala se hanno stesso seme
-    private String tipo;
+    public String tipo;
 
     /* costruttore */
     public Combinazione(){
         combinazione=new ArrayList<>();
         tipo="";
-    }
-
-    /* aggiunge carta a una combinazione */
-    public void pushCarta(Carta c){
-        if
     }
 
     /* setta il tipo della combinazione */
@@ -31,5 +28,17 @@ public class Combinazione {
             return true;
         }
         return false;
+    }
+
+    /* ordina una scala in ordine crescente */
+    public boolean ordinaScala(){
+
+        try{
+            Collections.sort(combinazione, Comparator.comparingInt(Carta::getValue));
+            return true;
+        }catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }
