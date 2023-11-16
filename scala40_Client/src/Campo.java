@@ -9,7 +9,7 @@ public class Campo extends JFrame{
 
     private BufferedImage backgroundImage;      //immagine sfondo
     private ClientTCP clientTCP=new ClientTCP();    /* oggetto per comunicare col server */
-    private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\"; /* root dove sono salvate le immagini */
+    private String root= "C:\\Users\\regan\\Documents\\ese scuola\\informatica\\2024\\progettoTecno\\Scala40\\scala40_Client\\"; /* root dove sono salvate le immagini */
 
     /* costruttore che crea la finestra */
     public Campo(String players) throws IOException {

@@ -39,5 +39,16 @@ public class ClientTCP {
         return oInput.readObject();
     }
 
+    public void terminaConnection() throws IOException{
+        try{
+            this.oInput.close();
+            this.oOutput.close();
+            this.socket.close();
+        }catch(IOException e){
+            System.err.println("Errore: " + e.getMessage());
+            throw e;
+        }
+    }
+
 
 }
