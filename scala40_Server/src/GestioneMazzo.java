@@ -14,7 +14,7 @@ public class GestioneMazzo {
     public List<Carta> scarti;  /* scarti */
 
     /* costruttore */
-    public GestioneMazzo(String file){
+    public GestioneMazzo(){
         mazzo= new ArrayList<>();
         scarti=new ArrayList<>();
     }
@@ -34,10 +34,10 @@ public class GestioneMazzo {
     }
 
     /* metodo per distribuire le carte  */
-    public void distribuisciCarte(GestionePlayers gP){
+    public void distribuisciCarte(PlayerServer p1, PlayerServer p2){
         for(int i=0;i<13;i++){
-            gP.players.get(0).carteMano.add(popIndex(mazzo));
-            gP.players.get(1).carteMano.add(popIndex(mazzo));
+            p1.carteMano.add(popIndex(mazzo));
+            p2.carteMano.add(popIndex(mazzo));
         }
         /* prima carta da mostrare nella pila scarti */
         scarti.add(popIndex(mazzo));

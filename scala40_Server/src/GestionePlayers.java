@@ -1,25 +1,36 @@
+import java.io.IOException;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GestionePlayers {
     
     /* lista giocatori */
-    public List<PlayerServer> players;
+    public List<Socket> connPlayers;
+
 
     /* costruttore */
     public GestionePlayers(){
-        players=new ArrayList<>();
+        connPlayers=new ArrayList<>();
     }
 
     /* aggiunge giocatore alla lista */
-    public boolean aggiungiPlayer(PlayerServer p){
-        if(players.size() == 2 && Gioco.gioco){
-            return false;
-        }
-
-        else{
-            players.add(p);
+    public boolean aggiungiPlayer(Socket p){
+        if(Gioco.gioco){
+            for(Socket socket : connPlayers){
+                if(socket.equals(p)){
+                    return false;
+                }
+            }
+            connPlayers.add(p);
             return true;
+        }
+        return false;
+    }
+
+    public void chiudiConnessioni() throws IOException{
+        for(Socket socket : connPlayers){
+            socket.close();
         }
     }
 
