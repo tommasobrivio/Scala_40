@@ -103,4 +103,12 @@ public class GestioneCombinazioni {
         }
         return false;
     }
+
+    public String serialize(){
+        String output="";
+        for (Combinazione c : combinazioni) {
+            output += c.serialize();
+        }
+        return output;
+    }
 }

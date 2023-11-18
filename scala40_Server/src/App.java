@@ -23,7 +23,7 @@ public class App {
 
         Gioco gioco= new Gioco(p1,p2);
 
-        while (Gioco.gioco) {
+        while (gioco.isAlive()) {
             
         }
 

@@ -19,8 +19,8 @@ public class ServerTCP {
         Socket socket = this.serverSocket.accept();
 
         if(gestionePlayers.aggiungiPlayer(socket)){
-            messaggio=new Messaggio("connessione accettata", null, null);
-            send(messaggio, socket);
+            
+            send("connessione accettata;", socket);
         }
         return socket;
     }
@@ -31,14 +31,14 @@ public class ServerTCP {
         serverSocket.close();
     }
 
-    public void send(Messaggio m, Socket socket) throws IOException{
-        ObjectOutputStream output= new ObjectOutputStream(socket.getOutputStream());
-        output.writeObject(m);
+    public void send(String messaggio, Socket socket) throws IOException{
+        PrintWriter output= new PrintWriter(socket.getOutputStream());
+        output.println(messaggio);
     }
     
-    public void sendAll(Messaggio m) throws IOException{
+    public void sendAll(String messaggio) throws IOException{
         for(Socket socket : gestionePlayers.connPlayers){
-            send(m, socket);
+            send(messaggio, socket);
         }
     }
 

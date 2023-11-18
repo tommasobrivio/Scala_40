@@ -22,14 +22,18 @@ public class Gioco extends Thread{
     public void run(){
         gioco=true;
 
-        messaggio=new Messaggio("gioco iniziato", null, null);
+        
         
         try {
-            server.sendAll(messaggio);
+            server.sendAll("gioco iniziato;");
             
             campo.gestioneMazzo.loadFromFileCSV();
 
             campo.gestioneMazzo.distribuisciCarte(p1, p2);
+
+            messaggio=new Messaggio("mazzo e scarti;");
+
+            messaggio.setOutput(campo.serializeMazzo());
 
             
         } catch (IOException e) {
@@ -42,9 +46,8 @@ public class Gioco extends Thread{
 
         gioco=false;
 
-        messaggio=new Messaggio("gioco finito", null, null);
         try {
-            server.sendAll(messaggio);
+            server.sendAll("gioco finito;");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -54,5 +57,7 @@ public class Gioco extends Thread{
 
     private void gestioneRichieste(){
         inGioco.start();
+
+        
     }
 }

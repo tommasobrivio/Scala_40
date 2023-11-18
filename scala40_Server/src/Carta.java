@@ -11,9 +11,16 @@ public class Carta {
     public char type;   /* seme della carta */
     public int value;   /* valore effettivo della carta */
 
-    /* costruttore */
-    public Carta(){
+    /* costruttore default */
+    public Carta(){}
 
+    /* costruttore */
+    public Carta(char cover, char rank, char type, int value){
+
+        this.cover=cover;
+        this.rank=rank;
+        this.type=type;
+        this.value=value;
     }
     
     /* metodo che controlla se è un intero (se non lo è sarà o un asso o una figura) */

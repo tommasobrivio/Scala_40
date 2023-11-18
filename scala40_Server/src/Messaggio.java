@@ -1,41 +1,39 @@
-import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Messaggio implements Serializable{
-    public String mess;
-    public List<Carta> carte;
-    public Campo campo;
+public class Messaggio {
+    public String mess, input, output;
+    
+    
 
-    public Messaggio(String m, List<Carta> list, Campo cam){
+    public Messaggio(String m){
         mess=m;
-        carte=list;
-        campo=cam;
+    }
+
+    public Messaggio(String m, String input){
+        mess=m;
+        this.input=input;
     }
 
 
-    public void deSerialize(Object o){
-        
-    }
+    public void deSerialize(){
+        List<Carta> carte=new ArrayList<>();
+        String[] dati= input.split(";");
 
-    public Object serialize(){
+        if(dati[0].equals("combinazione")){
+            for(int i=0;i<Integer.parseInt(dati[1]);i++){
+                String[] datiCarta=dati[2+i].split(",");
 
-        String out=mess+";";
+                Carta c=new Carta(datiCarta[0].charAt(0), datiCarta[1].charAt(0), datiCarta[2].charAt(0), Integer.parseInt(datiCarta[3]));
 
-        if(carte!=null){
-            out+=carte.size()+";";
-
-            for(Carta c : carte){
-                out+=c.cover+","+c.rank+","+c.type+","+c.value+";";
+                carte.add(c);
             }
         }
-        else if(campo!=null){
-            out+=campo.serialize();
-        }
-        else 
-            return out;
 
-        return out;
     }
 
+    public void setOutput(String s){
+        output=s;
+    }
     
 }

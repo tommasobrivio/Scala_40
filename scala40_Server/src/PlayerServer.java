@@ -1,4 +1,6 @@
-import java.io.ObjectInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,14 @@ public class PlayerServer extends Thread{
 
     public void run(){
         try{
-            ObjectInputStream input= new ObjectInputStream(socket.getInputStream());
+            BufferedReader input= new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             while(!this.socket.isClosed()){
                 
-                messaggio=new Messaggio(nome, input) 
+                messaggio=new Messaggio("richiesta client;", input.readLine());
             }
+        }catch(IOException e){
+            e.printStackTrace();
         }
     }
     

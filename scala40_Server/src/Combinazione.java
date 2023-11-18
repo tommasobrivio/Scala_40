@@ -41,4 +41,12 @@ public class Combinazione {
             return false;
         }
     }
+
+    public String serialize(){
+        String output="";
+        for (Carta c : combinazione) {
+            output += c.cover + "," + c.rank + "," + c.type + "," + c.value + ";";
+        }
+        return output;
+    }
 }

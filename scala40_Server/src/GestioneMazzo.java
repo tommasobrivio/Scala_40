@@ -6,17 +6,17 @@ import java.util.List;
 import java.util.Collections;
 
 public class GestioneMazzo {
-    
-    private final static String FILE_MAZZO="mazzoIniziale.csv"; /* nome file dove si trova il mazzo intero */
 
-    public List<Carta> mazzo;   /* mazzo di carte */
+    private final static String FILE_MAZZO = "mazzoIniziale.csv"; /* nome file dove si trova il mazzo intero */
 
-    public List<Carta> scarti;  /* scarti */
+    public List<Carta> mazzo; /* mazzo di carte */
+
+    public List<Carta> scarti; /* scarti */
 
     /* costruttore */
-    public GestioneMazzo(){
-        mazzo= new ArrayList<>();
-        scarti=new ArrayList<>();
+    public GestioneMazzo() {
+        mazzo = new ArrayList<>();
+        scarti = new ArrayList<>();
     }
 
     /* carica le carte dal file */
@@ -33,9 +33,9 @@ public class GestioneMazzo {
         mischia();
     }
 
-    /* metodo per distribuire le carte  */
-    public void distribuisciCarte(PlayerServer p1, PlayerServer p2){
-        for(int i=0;i<13;i++){
+    /* metodo per distribuire le carte */
+    public void distribuisciCarte(PlayerServer p1, PlayerServer p2) {
+        for (int i = 0; i < 13; i++) {
             p1.carteMano.add(popIndex(mazzo));
             p2.carteMano.add(popIndex(mazzo));
         }
@@ -44,26 +44,45 @@ public class GestioneMazzo {
     }
 
     /* mischia il mazzo */
-    public void mischia(){
+    public void mischia() {
         Collections.shuffle(mazzo);
     }
 
     /* prende l' ultima carta nella lista */
-    public Carta popIndex(List<Carta> list){
-        return list.remove(list.size()-1);
+    public Carta popIndex(List<Carta> list) {
+        return list.remove(list.size() - 1);
     }
 
-    /* quando mazzo finisce aggiunge la pila degli scarti, tranne una carta, al mazzo e mischia */
-    public void mischiaScarti(){
+    /*
+     * quando mazzo finisce aggiunge la pila degli scarti, tranne una carta, al
+     * mazzo e mischia
+     */
+    public void mischiaScarti() {
 
-        Carta temp=popIndex(scarti);
+        Carta temp = popIndex(scarti);
 
-        for(int i=0;i<scarti.size();i++){
+        for (int i = 0; i < scarti.size(); i++) {
             mazzo.add(popIndex(scarti));
         }
-    
+
         scarti.add(temp);
 
         mischia();
+    }
+
+    public String serialize() {
+        String output="mazzo;"+mazzo.size()+";";
+        
+        for (Carta c : mazzo) {
+            output += c.cover + "," + c.rank + "," + c.type + "," + c.value + ";";
+        }
+    
+        output="scarti;"+scarti.size()+";";
+        for (Carta c : scarti) {
+            output += c.cover + "," + c.rank + "," + c.type + "," + c.value + ";";
+        }
+        return output;
+        
+
     }
 }
