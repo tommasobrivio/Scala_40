@@ -54,8 +54,7 @@ public class GestioneMazzo {
     }
 
     /*
-     * quando mazzo finisce aggiunge la pila degli scarti, tranne una carta, al
-     * mazzo e mischia
+     * quando mazzo finisce aggiunge la pila degli scarti, tranne una carta, al mazzo e mischia
      */
     public void mischiaScarti() {
 
@@ -70,6 +69,7 @@ public class GestioneMazzo {
         mischia();
     }
 
+    /* metodo che serializza il mazzo e gli scarti */
     public String serialize() {
         String output="mazzo;"+mazzo.size()+";";
         

@@ -12,7 +12,8 @@ public class PlayerServer extends Thread{
     private Socket socket;  /* socket personale del giocatore */
     public List<Carta> combinazioni; /* combinazioni che il giocatore ha in campo */
     public boolean aperto; /* true se ha giocato i primi punti */
-    public Messaggio messaggio;
+    public Messaggio messaggio;     /* messaggio per salvare quello che riceve dal client */
+    
 
     /* costruttore */
     public PlayerServer(String nome, Socket socket){
@@ -22,10 +23,13 @@ public class PlayerServer extends Thread{
         aperto=false;
     }
 
+    /* metodo run dei thread */
     public void run(){
         try{
+            /* oggetto BufferedReader per leggere messaggio del client */
             BufferedReader input= new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
+            /* mentre la connessione non è chiusa */
             while(!this.socket.isClosed()){
                 
                 messaggio=new Messaggio("richiesta client;", input.readLine());

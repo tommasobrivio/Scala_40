@@ -54,6 +54,7 @@ public class GestioneCombinazioni {
         return false;
     }
 
+    /* controlla se la carta passata può attaccarsi a una combinazione presente sul campo */
     public boolean checkPushCombinazione(Carta carta){
 
         for(Combinazione c : combinazioni){
@@ -104,6 +105,7 @@ public class GestioneCombinazioni {
         return false;
     }
 
+    /* serializza le combinazioni */
     public String serialize(){
         String output="";
         for (Combinazione c : combinazioni) {

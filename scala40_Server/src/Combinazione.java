@@ -42,6 +42,7 @@ public class Combinazione {
         }
     }
 
+    /* serializza una combinazione */
     public String serialize(){
         String output="";
         for (Carta c : combinazione) {

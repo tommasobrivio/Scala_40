@@ -28,6 +28,7 @@ public class GestionePlayers {
         return false;
     }
 
+    /* chiude tutte le connessioni */
     public void chiudiConnessioni() throws IOException{
         for(Socket socket : connPlayers){
             socket.close();

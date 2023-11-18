@@ -5,18 +5,20 @@ public class Messaggio {
     public String mess, input, output;
     
     
-
+    /* costruttore che salva il messagio da inviare */
     public Messaggio(String m){
         mess=m;
     }
 
+    /* costruttore che salva il messaggio e il contenuto input */
     public Messaggio(String m, String input){
         mess=m;
         this.input=input;
     }
 
 
-    public void deSerialize(){
+    /* metodo per deserializzare i messaggi se sono delle liste di carte */
+    public List<Carta> deSerializeCarte(){
         List<Carta> carte=new ArrayList<>();
         String[] dati= input.split(";");
 
@@ -30,10 +32,13 @@ public class Messaggio {
             }
         }
 
+        return carte;
+
     }
 
+    /* setta l' output da inviare */
     public void setOutput(String s){
-        output=s;
+        output= mess+s;
     }
     
 }

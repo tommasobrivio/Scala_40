@@ -3,9 +3,8 @@ import java.net.*;
 
 public class ServerTCP {
     
-    public ServerSocket serverSocket;
-    public GestionePlayers gestionePlayers;
-    private Messaggio messaggio;
+    public ServerSocket serverSocket;   /* oggetto serverSocket per la comunicazione */
+    public GestionePlayers gestionePlayers;     /* contiene la lista delle socket dei giocatori */
 
     public ServerTCP(int porta) throws IOException{
         // Crea un socket server che ascolta sulla porta "porta"
@@ -20,6 +19,7 @@ public class ServerTCP {
 
         if(gestionePlayers.aggiungiPlayer(socket)){
             
+            /* se riesce ad aggiungere invia conferma */
             send("connessione accettata;", socket);
         }
         return socket;
@@ -31,17 +31,20 @@ public class ServerTCP {
         serverSocket.close();
     }
 
+    /* invia il messaggio a un client specifico */
     public void send(String messaggio, Socket socket) throws IOException{
         PrintWriter output= new PrintWriter(socket.getOutputStream());
         output.println(messaggio);
     }
     
+    /* invia il messaggio a tutti i client */
     public void sendAll(String messaggio) throws IOException{
         for(Socket socket : gestionePlayers.connPlayers){
             send(messaggio, socket);
         }
     }
 
+    /* chiude la connessione */
     public void close() throws IOException{
         gestionePlayers.chiudiConnessioni();
 
