@@ -20,7 +20,7 @@ public class Messaggio {
     /* metodo per deserializzare i messaggi se sono delle liste di carte */
     public List<Carta> deSerializeCarte(){
         List<Carta> carte=new ArrayList<>();
-        String[] dati= input.split(";");
+        String[] dati= mess.split(";");
 
         if(dati[0].equals("combinazione")){
             for(int i=0;i<Integer.parseInt(dati[1]);i++){

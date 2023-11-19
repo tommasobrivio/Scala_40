@@ -55,7 +55,7 @@ public class GestioneCombinazioni {
     }
 
     /* controlla se la carta passata può attaccarsi a una combinazione presente sul campo */
-    public boolean checkPushCombinazione(Carta carta){
+    public Combinazione checkPushCombinazione(Carta carta){
 
         for(Combinazione c : combinazioni){
             if(c.isSetTipo()){
@@ -65,8 +65,9 @@ public class GestioneCombinazioni {
 
                         if(c.combinazione.size()<4){
                             
+                            //se non esiste la carta con lo stesso seme
                             if(!c.combinazione.stream().anyMatch(existingCard -> existingCard.type == carta.type))
-                                return true;
+                                return c;
                             
                         }
                     }
@@ -79,22 +80,22 @@ public class GestioneCombinazioni {
                             if(c.combinazione.get(0).rank=='A'){
 
                                 if(carta.rank=='A' && c.combinazione.get(c.combinazione.size()-1).rank=='K')
-                                    return true;
+                                    return c;
                                 
                                 else if(carta.value+1 == c.combinazione.get(0).value)
-                                    return true;
+                                    return c;
                                 
                                 else if(carta.value-1 == c.combinazione.get(c.combinazione.size()-1).value)
-                                    return true;
+                                    return c;
                                 
                             }
                             else if(c.combinazione.get(c.combinazione.size()-1).rank=='A'){
 
                                 if(carta.value+1 == c.combinazione.get(0).value)
-                                        return true;
+                                        return c;
                                     
                                 else if(carta.value-1 == c.combinazione.get(c.combinazione.size()-1).value)
-                                    return true;
+                                    return c;
                                 
                             }
                         }
@@ -102,7 +103,7 @@ public class GestioneCombinazioni {
                 }
             }
         }
-        return false;
+        return null;
     }
 
     /* serializza le combinazioni */

@@ -17,6 +17,11 @@ public class Combinazione {
         tipo="";
     }
 
+    /* costruttore */
+    public Combinazione(List<Carta> tmp){
+        combinazione=tmp;
+    }
+
     /* setta il tipo della combinazione */
     public void setTipo(String s){
         tipo=s;

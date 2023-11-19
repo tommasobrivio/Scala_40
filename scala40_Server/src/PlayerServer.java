@@ -9,8 +9,8 @@ public class PlayerServer extends Thread{
 
     public String nome;    /* nome inserito dal giocatore */
     public List<Carta> carteMano;   /* carte che ha in mano */
-    private Socket socket;  /* socket personale del giocatore */
-    public List<Carta> combinazioni; /* combinazioni che il giocatore ha in campo */
+    public Socket socket;  /* socket personale del giocatore */
+    public GestioneCombinazioni combinazioni; /* combinazioni che il giocatore ha in campo */
     public boolean aperto; /* true se ha giocato i primi punti */
     public Messaggio messaggio;     /* messaggio per salvare quello che riceve dal client */
     
@@ -32,7 +32,7 @@ public class PlayerServer extends Thread{
             /* mentre la connessione non è chiusa */
             while(!this.socket.isClosed()){
                 
-                messaggio=new Messaggio("richiesta client;", input.readLine());
+                messaggio=new Messaggio(input.readLine());
             }
         }catch(IOException e){
             e.printStackTrace();

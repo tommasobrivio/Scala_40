@@ -32,18 +32,4 @@ public class Campo {
 
     }
 
-    /* serializza solo il mazzo */
-    public String serializeMazzo(){
-        String out="";
-        
-        if(gestioneMazzo.mazzo.size()!=0){
-            out+=gestioneMazzo.serialize();
-        }
-        else{
-            gestioneMazzo.mischiaScarti();
-            out+=gestioneMazzo.serialize();
-        }
-
-        return out;
-    }
 }
