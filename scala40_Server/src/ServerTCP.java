@@ -25,12 +25,6 @@ public class ServerTCP {
         return socket;
     }
 
-    public void chiudiConnessione() throws IOException{
-
-        //chiude la connessione
-        serverSocket.close();
-    }
-
     /* invia il messaggio a un client specifico */
     public void send(String messaggio, Socket socket) throws IOException{
         PrintWriter output= new PrintWriter(socket.getOutputStream());

@@ -57,4 +57,10 @@ public class Carta {
     public int getValue(){
         return value;
     }
+
+
+    public String serialize(){
+
+        return this.cover + "," + this.rank + "," + this.type + "," + this.value + ";";
+    }
 }

@@ -1,6 +1,0 @@
-@startuml scala40
-
-actor user1 as user1
-
-
-@enduml

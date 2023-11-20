@@ -7,15 +7,15 @@ public class Gioco extends Thread{
     /* attributo statico per indicare se il gioco è in corso */
     static public boolean gioco;
 
-    ServerTCP server;   /* oggetto serverTCP per la comunicazione */
-    PlayerServer p1, p2;   /* oggetti player all' interno del gioco */
-    PlayerServer inGioco;   /* player che sta giocando in un turno */
-    Campo campo;    /* campo con le varie combinazioni di carte */
+    public ServerTCP server;   /* oggetto serverTCP per la comunicazione */
+    public PlayerServer p1, p2;   /* oggetti player all' interno del gioco */
+    public PlayerServer inGioco;   /* player che sta giocando in un turno */
+    public Campo campo;    /* campo con le varie combinazioni di carte */
 
-    List<Combinazione> perAprire;
+    public List<Combinazione> perAprire;
 
 
-    Messaggio messaggio;    /* oggetto messaggio per gestire i contenuti inviati e ricevuti */
+    public Messaggio messaggio;    /* oggetto messaggio per gestire i contenuti inviati e ricevuti */
 
     /* costruttore */
     public Gioco(PlayerServer p1, PlayerServer p2){
@@ -92,6 +92,36 @@ public class Gioco extends Thread{
         }
             
         switch (dati[1]) {
+
+            /* se la richiesta è di pescare dal mazzo */
+            case "pescaMazzo":
+
+                /* prende la prima carta del mazzo */
+                Carta pesca = campo.gestioneMazzo.popIndex(campo.gestioneMazzo.mazzo);
+
+                /* invia la carta */
+                server.send(pesca.serialize(), inGioco.socket);
+
+                break;
+
+            /* se la richiesta è di pescare dagli scarti */
+            case "pescaScarto":
+
+                /* solo se ha aperto può prendere la carta degli scarti */
+                if(inGioco.aperto){
+                    /* prende la prima carta degli scarti */
+                    pesca = campo.gestioneMazzo.popIndex(campo.gestioneMazzo.scarti);
+
+                    /* invia la carta */
+                    server.send(pesca.serialize(), inGioco.socket);
+
+                }
+                else{
+                    /* messaggio errore */
+                    server.send("non hai aperto", inGioco.socket);
+                }
+                
+                break;
 
             /* se la richiesta è gioca */
             case "gioca":
