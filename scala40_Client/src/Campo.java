@@ -5,57 +5,64 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Campo extends JFrame{
+public class Campo extends JFrame {
 
-    private BufferedImage backgroundImage;      //immagine sfondo
-    private ClientTCP clientTCP=new ClientTCP();    /* oggetto per comunicare col server */
-    private String root= "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\"; /* root dove sono salvate le immagini */
+    private JButton deckButton;          // Bottone per selezionare il mazzo
+    private JButton discardsButton;      // Bottone per selezionare il mazzo degli scarti
+    private BufferedImage backgroundImage; // Immagine sfondo
+    private ClientTCP clientTCP;           // Oggetto per comunicare col server
+    private String root = "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Client\\"; // Root dove sono salvate le immagini
 
-    /* costruttore che crea la finestra */
+    // Costruttore che crea la finestra
     public Campo(String playerName) throws IOException {
+        PlayerClient player = new PlayerClient(playerName);
+        inviaConnessione(player);
 
-        player=new PlayerClient(playerName);
-        inviaConnessione();
-        //titolo della finestra
+        // Titolo della finestra
         setTitle("Scala 40");
 
-        //sfondo finestra
-        this.backgroundImage = ImageIO.read(new File(this.root+"img/sfondoCampo.jpg"));
+        // Sfondo finestra
+        this.backgroundImage = ImageIO.read(new File(this.root + "img/sfondoCampo.jpg"));
 
-        // calcolo le coordinate in base alle percentuali dello schermo
+        // Calcolo le coordinate in base alle percentuali dello schermo
         int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
         int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
 
-        //calcolo dimensioni
+        // Calcolo dimensioni
         setSize((int) (screenWidth * 1), (int) (screenHeight * 1));
 
-        //controlla che si chiuda la finestra quando clicco sulla X
+        // Controlla che si chiuda la finestra quando clicco sulla X
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //crea pannello dove inserire i componenti
+        // Crea pannello dove inserire i componenti
         JPanel overlayPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // disegno l'immagine di sfondo
+                // Disegno l'immagine di sfondo
                 g.drawImage(backgroundImage, 0, 0, getWidth(), getHeight(), this);
             }
         };
 
-        
+        // Crea bottoni
+        deckButton = new JButton("Selezione Mazzo");
+        discardsButton = new JButton("Selezione Scarti");
 
-        // Crea e aggiungi componenti GUI (es. carte, bottoni, ecc.) al pannello del gioco..
+        // Aggiunge azioni ai bottoni se necessario
 
-        
-        //aggiunge gli elementi al pannello
+        // Aggiunge gli elementi al pannello
+        overlayPanel.add(deckButton);
+        overlayPanel.add(discardsButton);
+
+        // Aggiunge il pannello alla finestra
         add(overlayPanel);
 
-        //rende visibile il pannello
+        // Rende visibile il pannello
         setVisible(true);
     }
 
-    //invia un messaggio al server
-    public void inviaConnessione() throws IOException{
+    // Invia un messaggio al server
+    public void inviaConnessione(PlayerClient player) throws IOException {
         Messaggio m = new Messaggio(player.nome);
         this.clientTCP.send(m.mess);
     }
