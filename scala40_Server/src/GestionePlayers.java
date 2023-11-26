@@ -16,7 +16,7 @@ public class GestionePlayers {
 
     /* aggiunge giocatore alla lista */
     public boolean aggiungiPlayer(Socket p){
-        if(Gioco.gioco){
+        //if(Gioco.gioco){
             for(Socket socket : connPlayers){
                 if(socket.equals(p)){
                     return false;
@@ -24,8 +24,8 @@ public class GestionePlayers {
             }
             connPlayers.add(p);
             return true;
-        }
-        return false;
+        //}
+        //return false;
     }
 
     /* chiude tutte le connessioni */

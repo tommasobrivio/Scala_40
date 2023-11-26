@@ -31,7 +31,7 @@ public class PlayerServer extends Thread{
 
             /* mentre la connessione non è chiusa */
             while(!this.socket.isClosed()){
-                
+                System.out.println(input.readLine());
                 messaggio=new Messaggio(input.readLine());
             }
         }catch(IOException e){

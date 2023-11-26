@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class GestioneMazzo {
 
-    private final static String FILE_MAZZO = "mazzoIniziale.csv"; /* nome file dove si trova il mazzo intero */
+    private final static String FILE_MAZZO = "C:\\Users\\tomma\\OneDrive\\Desktop\\Scuola\\tecnologia\\Scala40\\scala40_Server\\files\\mazzoIniziale.csv"; /* nome file dove si trova il mazzo intero */
 
     public List<Carta> mazzo; /* mazzo di carte */
 
@@ -34,10 +34,10 @@ public class GestioneMazzo {
     }
 
     /* metodo per distribuire le carte */
-    public void distribuisciCarte(PlayerServer p1, PlayerServer p2) {
+    public void distribuisciCarte(PlayerServer p1/*, PlayerServer p2*/) {
         for (int i = 0; i < 13; i++) {
             p1.carteMano.add(popIndex(mazzo));
-            p2.carteMano.add(popIndex(mazzo));
+            //p2.carteMano.add(popIndex(mazzo));
         }
         /* prima carta da mostrare nella pila scarti */
         scarti.add(popIndex(mazzo));
